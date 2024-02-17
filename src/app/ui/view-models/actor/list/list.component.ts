@@ -24,7 +24,6 @@ export class ListComponent implements OnInit {
   ];
 
   dataSource!: MatTableDataSource<IDomainActor>;
-
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
