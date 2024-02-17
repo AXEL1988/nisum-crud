@@ -1,0 +1,64 @@
+<div mat-dialog-title>
+  <h1>Datos de Actor</h1>
+</div>
+<form [formGroup]="actorForm" (ngSubmit)="onFormSubmit()">
+  <div mat-dialog-content class="content">
+    <div class="row">
+      <mat-form-field appearance="outline" class="mat-50">
+        <mat-label>Nombre</mat-label>
+        <input
+          matInput
+          type="text"
+          placeholder="Ej. Edison Fernández"
+          maxlength="35"
+          formControlName="primaryName"
+        />
+        <mat-error *ngIf="actorForm.get('primaryName')?.errors?.['minlength']"
+          >El campo debe tener mínimo 2 caracteres.</mat-error
+        >
+        <mat-error *ngIf="actorForm.get('primaryName')?.errors?.['maxlength']"
+          >El campo debe tener máximo 30 caracteres.</mat-error
+        >
+      </mat-form-field>
+    </div>
+
+    <div class="row">
+      <mat-form-field appearance="outline">
+        <mat-label>Profesiones</mat-label>
+        <input
+          matInput
+          placeholder="Ex. Babaji"
+          formControlName="primaryProfession"
+        />
+      </mat-form-field>
+    </div>
+
+    <div class="row">
+      <mat-form-field appearance="outline">
+        <mat-label>Año de nacimiento</mat-label>
+        <input matInput placeholder="Ej. 1988" formControlName="birthYear" />
+        <mat-error *ngIf="actorForm.get('birthYear')?.errors?.['pattern']"
+          >Ingrese solo números, por favor revise el ejemplo del
+          formulario.</mat-error
+        >
+        <mat-error *ngIf="actorForm.get('birthYear')?.errors?.['minlength']"
+          >El campo debe tener minímo 4, por favor revise el ejemplo del
+          formulario.</mat-error
+        >
+        <mat-error *ngIf="actorForm.get('birthYear')?.errors?.['maxlength']"
+          >El campo debe tener máximo 4, por favor revise el ejemplo del
+          formulario.</mat-error
+        >
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div mat-dialog-actions class="action">
+    <button mat-raised-button type="button" [mat-dialog-close]="false">
+      Cancelar
+    </button>
+    <button mat-raised-button color="primary" type="submit">
+      {{ data ? "Actualizar" : "Guardar" }}
+    </button>
+  </div>
+</form>
