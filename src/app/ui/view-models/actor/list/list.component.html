@@ -1,5 +1,79 @@
 <mat-toolbar color="primary">
-  <span>Crud Application</span>
+  <span>Crud Aplicación</span>
   <span class="example-spacer"></span>
-  <button mat-raised-button routerLink="/crear">ADD EMPLOYEE</button>
 </mat-toolbar>
+<div class="main-body">
+  <app-loader *ngIf="loading"></app-loader>
+  <mat-toolbar color="primary">
+    <span>Lista de Actores</span>
+    <span class="example-spacer"></span>
+    <button mat-raised-button (click)="openAddEditForm()">Agregar Actor</button>
+  </mat-toolbar>
+
+  <mat-form-field>
+    <mat-label>Ingrese el parámetro de búsqueda</mat-label>
+    <input
+      matInput
+      (keyup)="applyFilter($event)"
+      placeholder="Ej. Edison Fernandez"
+      #input
+    />
+  </mat-form-field>
+
+  <div class="responsive-table">
+    <div class="">
+      <table mat-table [dataSource]="dataSource" matSort>
+        <!-- ID Column -->
+        <ng-container matColumnDef="_id">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>
+            Identificador
+          </th>
+          <td mat-cell *matCellDef="let row">{{ row._id }}</td>
+        </ng-container>
+
+        <!-- primaryName Column -->
+        <ng-container matColumnDef="primaryName">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Nombre</th>
+          <td mat-cell *matCellDef="let row">{{ row.primaryName }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="primaryProfession">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Profesiones</th>
+          <td mat-cell *matCellDef="let row">{{ row.primaryProfession }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="birthYear">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>
+            Año de nacimiento
+          </th>
+          <td mat-cell *matCellDef="let row">{{ row.birthYear }}</td>
+        </ng-container>
+        <ng-container matColumnDef="action">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Acciones</th>
+          <td mat-cell *matCellDef="let row">
+            <button mat-icon-button color="primary" (click)="openEditForm(row)">
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button mat-icon-button color="warn" (click)="deleteActor(row._id)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
+        <tr class="mat-row" *matNoDataRow>
+          <td class="mat-cell" colspan="4">
+            No existen resultados para la búsqueda "{{ input.value }}"
+          </td>
+        </tr>
+      </table>
+
+      <mat-paginator
+        [pageSizeOptions]="[5, 10, 25, 100]"
+        aria-label="Select page of Actores"
+      ></mat-paginator>
+    </div>
+  </div>
+</div>
