@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ActorUseCaseService } from '../../../../domain/actor/application/actor-use-case.service';
 
 @Component({
   selector: 'app-list',
@@ -7,4 +8,13 @@ import { Component } from '@angular/core';
 })
 export class ListComponent {
 
+  constructor(private _actorService: ActorUseCaseService) {}
+
+  ngOnInit(): void {
+  this.getActorsList();
+  }
+
+  getActorsList(): void {
+    this._actorService.getActors().subscribe();
+  }
 }
