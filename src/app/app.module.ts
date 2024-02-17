@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { HTTP_INTERCEPTORS, provideHttpClient } from '@angular/common/http';
@@ -12,7 +12,6 @@ import { AppInterceptor } from './domain/actor/infractructure/providers/app-inte
 import { ActorsComponent } from './ui/pages/actors/actors.component';
 import { CreateUpdateComponent } from './ui/view-models/actor/create-update/create-update.component';
 import { ListComponent } from './ui/view-models/actor/list/list.component';
-
 
 import { MaterialModule } from './material.module';
 import { LoaderComponent } from './ui/common/loader/loader.component';
@@ -29,8 +28,9 @@ import { LoaderComponent } from './ui/common/loader/loader.component';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MaterialModule
+    MaterialModule,
   ],
+  schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
   providers: [{provide: HTTP_INTERCEPTORS, useClass: AppInterceptor, multi: true}, ACTOR_API_PROVIDER, provideHttpClient()],
   bootstrap: [AppComponent]
 })
