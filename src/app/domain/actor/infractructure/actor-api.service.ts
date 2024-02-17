@@ -13,9 +13,8 @@ export class  ActorApiService implements IActorApiService {
   private readonly API_KEY = environment.XRapidAPIKey;
   private readonly API_HOST = environment.XRapidAPIHost;
 
-  constructor(private _httpClient: HttpClient) {
+  constructor(private _httpClient: HttpClient) {}
 
-  }
   getActorsRapid(): Observable<IDomainResponseActor> {
     const headers = new HttpHeaders({
 			'X-RapidAPI-Key': '8f1acd41d3msh0e8ca8b0f23e38bp1065e0jsnbba945aeb4a0',

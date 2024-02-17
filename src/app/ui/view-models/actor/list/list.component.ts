@@ -15,8 +15,6 @@ import { CreateUpdateComponent } from '../create-update/create-update.component'
 })
 export class ListComponent implements OnInit {
 
-  loading = false;
-
   displayedColumns: string[] = [
     '_id',
     'primaryName',
@@ -84,9 +82,7 @@ export class ListComponent implements OnInit {
   }
 
   deleteActor(id: string) {
-    this.loading = true;
     this._actorService.delete(id);
     this._snackBarService.openSnackBar('Actor creado correctamente');
-    this.loading = false;
   }
 }

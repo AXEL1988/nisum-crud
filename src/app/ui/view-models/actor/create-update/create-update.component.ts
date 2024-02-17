@@ -36,7 +36,7 @@ export class CreateUpdateComponent implements OnInit {
       if (this.data) {
         let actor: IDomainActor = {...this.actorForm.value, _id: this.data._id};
         this._actorService.update(this.data._id, actor);
-        this._snackBarService.openSnackBar('Actor creado correctamente');
+        this._snackBarService.openSnackBar('Actor actualizado correctamente!');
         this._dialogRef.close(true);
       }
 
@@ -44,7 +44,7 @@ export class CreateUpdateComponent implements OnInit {
         let guidActor = this.generateGuid();
         let actor: IDomainActor = {...this.actorForm.value, _id: guidActor};
         this._actorService.add(actor);
-        this._snackBarService.openSnackBar('Actor creado correctamente');
+        this._snackBarService.openSnackBar('Actor creado correctamente!');
         this._dialogRef.close(true);
       }
 
