@@ -3,8 +3,13 @@ import { ActorUseCaseService } from '../../../domain/actor/application/actor-use
 
 @Component({
   selector: 'app-actors',
-  templateUrl: './actors.component.html',
-  styleUrls: ['./actors.component.scss']
+  template: `<mat-toolbar color="primary">
+                <span>Crud Aplicación</span>
+                <span class="example-spacer"></span>
+            </mat-toolbar>
+            <app-loader *ngIf="loading"></app-loader>
+            <app-list></app-list>
+            `,
 })
 export class ActorsComponent implements OnInit {
 

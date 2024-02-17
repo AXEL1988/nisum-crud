@@ -15,16 +15,18 @@ export class CreateUpdateComponent implements OnInit {
   actorForm: FormGroup;
 
   constructor(private _fb: FormBuilder,
-    private _dialogRef: MatDialogRef<CreateUpdateComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any,
-    private _actorService: ActorUseCaseService,
-    private _snackBarService: SnackBarService,
-    ) {
+              private _dialogRef: MatDialogRef<CreateUpdateComponent>,
+              @Inject(MAT_DIALOG_DATA) public data: any,
+              private _actorService: ActorUseCaseService,
+              private _snackBarService: SnackBarService,
+            ) {
+
     this.actorForm = this._fb.group({
       primaryName: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(30)]],
       primaryProfession: [''],
       birthYear: ['', [Validators.required, Validators.pattern(/^([0-9])*$/), Validators.minLength(4), Validators.maxLength(4)]]
     });
+
   }
   ngOnInit(): void {
     this.actorForm.patchValue(this.data);
@@ -47,12 +49,10 @@ export class CreateUpdateComponent implements OnInit {
         this._snackBarService.openSnackBar('Actor creado correctamente!');
         this._dialogRef.close(true);
       }
-
     }
   }
 
   generateGuid = () => {
     return Math.random().toString(30).substring(2);
   }
-
 }

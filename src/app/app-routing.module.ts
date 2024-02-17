@@ -4,7 +4,7 @@ import { ActorsComponent } from './ui/pages/actors/actors.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'actor', pathMatch: 'full'},
-  {path: 'actor', component: ActorsComponent},
+  {path: 'actor', title: 'Actores',  component: ActorsComponent},
 ];
 
 @NgModule({

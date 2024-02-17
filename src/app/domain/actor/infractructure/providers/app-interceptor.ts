@@ -10,7 +10,6 @@ export class AppInterceptor implements HttpInterceptor {
   private readonly API_HOST = environment.XRapidAPIHost;
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    console.log('interceptors...');
     let ok: string;
     let request = req;
     request = req.clone({
@@ -19,7 +18,6 @@ export class AppInterceptor implements HttpInterceptor {
         'X-RapidAPI-Host' : this.API_HOST
       }
     });
-    console.info('Interceptor');
     return next.handle(request).pipe(
       tap({
         next: (event) => (ok = event instanceof HttpResponse ? 'succeeded' : ''),
@@ -28,8 +26,3 @@ export class AppInterceptor implements HttpInterceptor {
     );
   }
 }
-
-// export const ACTOR_INTERCEPTOR = {
-//   provide: HTTP_INTERCEPTORS,
-//   useClass: AppInterceptor
-// }

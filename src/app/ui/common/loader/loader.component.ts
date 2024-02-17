@@ -2,9 +2,6 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-loader',
-  templateUrl: './loader.component.html',
-  styleUrls: ['./loader.component.scss']
+  template: `<mat-progress-bar mode="indeterminate"></mat-progress-bar>`,
 })
-export class LoaderComponent {
-
-}
+export class LoaderComponent {}
